@@ -16,23 +16,39 @@ connection.once('open', async () => {
   const thoughts = [];
 
   for (let i = 0; i < 20; i++) {
-    const fullName = getRandomName();
-    const first = fullName.split(' ')[0];
-    const last = fullName.split(' ')[1];
+    const tempUserName = getRandomName();
+    let tempEmail = "TEMP@gmail.com";
+    const thoughts = "TEMP THOUGHT";
+    const friends = "Temp LIST"
+
+    // console.log("UserName: " + userName)
+
+    // const first = fullName.split(' ')[0];
+    // const last = fullName.split(' ')[1];
+
+    // email = Math.floor(Math.random() * (1000 - 18 + 1) + 18) + email;
+    // console.log("UserName: " + email)
+
+    // await User.collection.insertOne({
+    //   userName: tempUserName,
+    //   email: tempEmail,
 
     users.push({
-      first,
-      last,
-      age: Math.floor(Math.random() * (99 - 18 + 1) + 18),
-    });
+      userName: tempUserName,
+      email: tempEmail,
+    }
+    );
   }
 
+  console.table(users);
+
   await User.collection.insertMany(users);
-  await Thought.collection.insertMany(thoughts);
+  // await Thought.collection.insertMany(thoughts);
 
   // loop through the saved applications, for each application we need to generate a application response and insert the application responses
-  console.table("==== USER ==== \n" + users);
-  console.table(thoughts);
+  console.log("==== USER ==== \n");
+  console.table(users);
+  // console.table(thoughts);
 
   console.info('Seeding complete! 🌱');
   process.exit(0);

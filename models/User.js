@@ -13,8 +13,8 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
-      email: Schema.Types.Email,
+      // unique: true,
+      // email: Schema.Types.Email,
 
     },
     thoughts: [
