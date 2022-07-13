@@ -1,8 +1,7 @@
 const connection = require('../config/connection');
+const { faker } = require('@faker-js/faker');
 const { User, Thought } = require('../models');
-
 const { getRandomName, getRandomThought } = require('./data');
-
 
 connection.on('error', (err) => err);
 
@@ -12,35 +11,21 @@ connection.once('open', async () => {
   await User.deleteMany({});
 
   const users = [];
-  // const thoughts = getRandomApplications(10);
   const thoughts = [];
 
-  for (let i = 0; i < 20; i++) {
-    const tempUserName = getRandomName();
-    let tempEmail = "TEMP@gmail.com";
-    const thoughts = "TEMP THOUGHT";
-    const friends = "Temp LIST"
+  console.log("FAKER = " + faker.internet.userName())
 
-    // console.log("UserName: " + userName)
-
-    // const first = fullName.split(' ')[0];
-    // const last = fullName.split(' ')[1];
-
-    // email = Math.floor(Math.random() * (1000 - 18 + 1) + 18) + email;
-    // console.log("UserName: " + email)
-
-    // await User.collection.insertOne({
-    //   userName: tempUserName,
-    //   email: tempEmail,
+  for (let i = 0; i < 20; i++) {,
 
     users.push({
-      userName: tempUserName,
-      email: tempEmail,
+      username: faker.internet.userName(),
+      email: faker.internet.email(),
     }
     );
   }
 
-  console.table(users);
+  // console.table(users);
+  console.log(users)
 
   await User.collection.insertMany(users);
   // await Thought.collection.insertMany(thoughts);
