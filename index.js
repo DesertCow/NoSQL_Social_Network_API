@@ -19,7 +19,7 @@ app.use(routes);
 
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`\n\x1b[42m   ~~~ API server is LIVE ~~~   \x1b[0m`);
+    console.log(`\n\x1b[42m   ~~~ API server is ONLINE ~~~   \x1b[0m`);
     console.log(`\x1b[0m\x1b[43m${activity}\x1b[0m`);
     console.log(`\x1b[46mLive API: http://localhost:${PORT}/api\x1b[0m`);
   });

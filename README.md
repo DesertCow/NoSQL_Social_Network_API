@@ -120,7 +120,7 @@ npm start
  <p align="center">
   <img src="./public/img/demo1.gif" width="550" alt="Demo 1")
 </p>
-<h5 align="center">Demo of Surf-Deck</h5>
+<h5 align="center">Demo of API</h5>
 <br>
 <br>
 
