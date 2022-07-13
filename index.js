@@ -19,8 +19,8 @@ app.use(routes);
 
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`💡     Database Connection:  \x1b[42mOnline\x1b[0m     💡`);
-    console.log(`${activity}`);
-    console.log(`🚀  \x1b[46mLive API: http://localhost:${PORT}/api\x1b[0m 🚀`);
+    console.log(`💡     Database Connection:  \x1b[32mOnline\x1b[0m     💡`);
+    // console.log(`${activity}`);
+    console.log(`🚀  Live API: \x1b[34mhttp://localhost:${PORT}/api\x1b[0m 🚀\n\n`);
   });
 });

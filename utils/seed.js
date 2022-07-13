@@ -5,7 +5,7 @@ const { User, Thought } = require('../models');
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {
-  console.log(`💡     Database Connection:  \x1b[42mOnline\x1b[0m     💡`);
+  console.log(`💡     Database Connection:  \x1b[32mOnline\x1b[0m     💡`);
   await Thought.deleteMany({});
   await User.deleteMany({});
 
@@ -40,6 +40,6 @@ connection.once('open', async () => {
   // console.table(users);
   // console.table(thoughts);
 
-  console.info('🌱           Seeding: \x1b[42mComplete\x1b[0m          🌱\n\n');
+  console.info('🌱           Seeding: \x1b[32mComplete\x1b[0m          🌱\n\n');
   process.exit(0);
 });
