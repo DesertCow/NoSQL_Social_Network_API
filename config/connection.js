@@ -1,13 +1,16 @@
+
+require('dotenv').config();
+
+const { config } = require('dotenv');
 const mongoose = require('mongoose');
 
-const Database_URL = "mongodb://192.168.25.10:27017/aggregateDB"
-// const Database_URL = "mongodb://127.0.0.1:27017/aggregateDB"
+console.log("\x1b[43mDATABASE_URL: " + process.env.DATABASE_URL + "\x1b[0m");
 
-// Wrap Mongoose around local connection to MongoDB
-mongoose.connect(Database_URL, {
+//* Setup Connection to Database
+mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-// Export connection 
+
 module.exports = mongoose.connection;

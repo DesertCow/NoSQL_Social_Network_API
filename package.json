@@ -1,0 +1,31 @@
+{
+  "name": "nosql_social_network_api",
+  "version": "1.0.0",
+  "description": "NoSQL Challenge: Social Network API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index",
+    "seed": "node utils/seed",
+    "heroku-postbuild": "node utils/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DesertCow/NoSQL_Social_Network_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DesertCow/NoSQL_Social_Network_API/issues"
+  },
+  "homepage": "https://github.com/DesertCow/NoSQL_Social_Network_API#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
