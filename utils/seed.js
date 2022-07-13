@@ -1,7 +1,6 @@
 const connection = require('../config/connection');
 const { faker } = require('@faker-js/faker');
 const { User, Thought } = require('../models');
-const { getRandomName, getRandomThought } = require('./data');
 
 connection.on('error', (err) => err);
 
