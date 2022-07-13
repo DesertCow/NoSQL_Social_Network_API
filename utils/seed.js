@@ -13,27 +13,33 @@ connection.once('open', async () => {
   const users = [];
   const thoughts = [];
 
-  console.log("FAKER = " + faker.internet.userName())
+  for (let i = 0; i < 20; i++) {
 
-  for (let i = 0; i < 20; i++) {,
+    let tempUserName = faker.internet.userName()
 
     users.push({
-      username: faker.internet.userName(),
+      username: tempUserName,
       email: faker.internet.email(),
     }
     );
+
+    // Generates between 1-5 posts by this user
+    for (let j = 0; j < Math.floor(Math.random() * 5); j++) {
+      thoughts.push({
+        thoughtText: faker.lorem.paragraph(3),
+        username: tempUserName,
+      })
+    }
   }
 
   // console.table(users);
-  console.log(users)
+  // console.log(users)
 
   await User.collection.insertMany(users);
-  // await Thought.collection.insertMany(thoughts);
+  await Thought.collection.insertMany(thoughts);
 
-  // loop through the saved applications, for each application we need to generate a application response and insert the application responses
-  console.log("==== USER ==== \n");
   console.table(users);
-  // console.table(thoughts);
+  console.table(thoughts);
 
   console.info('Seeding complete! 🌱');
   process.exit(0);
