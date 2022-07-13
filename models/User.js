@@ -13,8 +13,8 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
-      email: mongoose.SchemaTypes.Email,
+      // unique: true,
+      // email: Schema.Types.Email,
 
     },
     thoughts: [
@@ -38,7 +38,7 @@ const userSchema = new Schema(
   }
 );
 
-postSchema.virtual('friendCount').get(function () {
+userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
