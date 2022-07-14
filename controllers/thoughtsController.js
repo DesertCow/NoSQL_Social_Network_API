@@ -48,7 +48,6 @@ module.exports = {
   },
   //* Post reaction
   postReaction(req, res) {
-    console.log("POST REACTION! " + req.params.thoughtId);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { reactions: req.body } },
