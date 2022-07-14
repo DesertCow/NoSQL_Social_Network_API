@@ -1,6 +1,8 @@
 const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
+
+// Get Method: formatTimeStamp
 function formatTimeStamp(timestamp) {
 
   timestamp = moment().format('h:mm:ss a on MMMM Do YYYY');
@@ -65,10 +67,6 @@ const thoughtSchema = new Schema({
 thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length
 });
-
-
-
-// default: Date.now,
 
 // Initialize Thought Model
 const Thought = model('thought', thoughtSchema);
