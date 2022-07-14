@@ -4,8 +4,8 @@ const { Schema, model } = require('mongoose');
 const reactionSchema = new Schema(
   {
     reactionId: {
-      type: String,
-      required: true
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
     },
     reactionBody: {
       type: String,
@@ -55,15 +55,10 @@ const thoughtSchema = new Schema({
 
 thoughtSchema.virtual('reactionCount').get(function () {
   //TODO: Fix ME! TEMP WORKAROUND
-  // return this.reactions.length();
+  //* How to count the number of "reactions" stored under reactions
+  //return this.reactions.length();
   return Math.floor(Math.random() * 150);
 });
-
-// thoughtSchema.virtual('userId').get(function () {
-
-//   return this.userId;
-//   // return "NULL";
-// });
 
 
 // Initialize Thought Model
