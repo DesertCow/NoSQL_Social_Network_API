@@ -109,6 +109,7 @@ npm start
   * dotenv (16.0.1)
   * mongoose (6.0.13)
   * faker-js (7.3.0)
+  * moment (2.29.4)
     <br>
 
 <br>

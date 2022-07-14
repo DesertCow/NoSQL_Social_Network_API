@@ -1,13 +1,13 @@
 const { Thought } = require('../models');
 
 module.exports = {
-  //* Get all Thoughts res.json(thoughts) 
+  //* GET: allThoughts
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-  //* Get a single Thoughts
+  //* GET: a single Thought
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
@@ -18,19 +18,19 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //* Create a new Thought
+  //* POST: Create a new Thought
   createThought(req, res) {
     Thought.create(req.body)
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-  //* Delete Thoughts
+  //* DELETE: Thoughts
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thoughts) => res.status(200).json({ message: 'Thought ' + req.params.thoughtId + ' Deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
-  //* Update Thoughts
+  //* PUT: Update an existing Thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -46,9 +46,8 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //* Post reaction
+  //* POST: Add reaction
   postReaction(req, res) {
-    console.log("POST REACTION! " + req.params.thoughtId);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { reactions: req.body } },
@@ -63,7 +62,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //* Delete reaction
+  //* DELETE: Remove reaction
   deleteReaction(req, res) {
     console.log("DELETE REACTION! " + req.params.thoughtId + " || " + req.params.reactionID);
     Thought.findOneAndUpdate(
