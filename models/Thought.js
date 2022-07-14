@@ -19,7 +19,6 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-
     },
   });
 
@@ -41,6 +40,9 @@ const thoughtSchema = new Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+  },
   reactions: reactionSchema,
 },
   {
@@ -52,11 +54,19 @@ const thoughtSchema = new Schema({
 );
 
 thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reactions.length;
+  //TODO: Fix ME! TEMP WORKAROUND
+  // return this.reactions.length();
+  return Math.floor(Math.random() * 150);
 });
+
+// thoughtSchema.virtual('userId').get(function () {
+
+//   return this.userId;
+//   // return "NULL";
+// });
 
 
 // Initialize Thought Model
-const Thought = model('Thought', thoughtSchema);
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;

@@ -5,7 +5,7 @@ const { User, Thought } = require('../models');
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {
-  console.log(`\x1b[42m ~~~ Successful Connection to Datbase for Seeding! ~~~ \x1b[0m`);
+  console.log(`💡     Database Connection:  \x1b[32mOnline\x1b[0m     💡`);
   await Thought.deleteMany({});
   await User.deleteMany({});
 
@@ -37,9 +37,9 @@ connection.once('open', async () => {
   await User.collection.insertMany(users);
   await Thought.collection.insertMany(thoughts);
 
-  console.table(users);
-  console.table(thoughts);
+  // console.table(users);
+  // console.table(thoughts);
 
-  console.info('Seeding complete! 🌱');
+  console.info('🌱           Seeding: \x1b[32mComplete\x1b[0m          🌱\n\n');
   process.exit(0);
 });

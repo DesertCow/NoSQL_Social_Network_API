@@ -108,6 +108,7 @@ npm start
   * Express.js (4.18.1)
   * dotenv (16.0.1)
   * mongoose (6.0.13)
+  * faker-js (7.3.0)
     <br>
 
 <br>
