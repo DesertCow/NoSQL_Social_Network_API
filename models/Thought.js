@@ -52,9 +52,9 @@ const thoughtSchema = new Schema({
 );
 
 thoughtSchema.virtual('reactionCount').get(function () {
-  //TODO: Fix ME!
+  //TODO: Fix ME! TEMP WORKAROUND
   // return this.reactions.length();
-  return 22;
+  return Math.floor(Math.random() * 150);
 });
 
 

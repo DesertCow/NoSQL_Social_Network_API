@@ -24,13 +24,11 @@ module.exports = {
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-
-  //* Create a new Thought
+  //* Delete Thoughts
   deleteThought(req, res) {
-    // User.create(req.body)
-    //   .then((users) => res.json(users))
-    //   .catch((err) => res.status(500).json(err));
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+      .then((thoughts) => res.status(200).json({ message: 'Thought ' + req.params.thoughtId + ' Deleted!' }))
+      .catch((err) => res.status(500).json(err));
   },
-
 
 };

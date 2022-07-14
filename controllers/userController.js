@@ -26,22 +26,20 @@ module.exports = {
   },
   //* Delete User and Remove thoughts
   deleteUser(req, res) {
-    User.findOneAndRemove({ _id: req.params.userId })
+    User.findOneAndDelete({ userName: req.params.userName })
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No such User exists' })
-          : Thought.findOneAndUpdate(
-            { _id: req.params.userId },
-            { $pull: { _id: req.params.userId } },
-            { new: true }
+          ? res.status(404).json({ message: 'No such User exists' + req.params.userName })
+          : Thought.deleteMany(
+            { username: req.params.userName }
           )
       )
-      .then((course) =>
-        !course
+      .then((thought) =>
+        !thought
           ? res.status(404).json({
-            message: 'User deleted, but no Thoughts found!',
+            message: 'User (' + req.params.userName + ') deleted, but no Thought(s) found!',
           })
-          : res.json({ message: 'User and Thoughts successfully deleted' })
+          : res.json({ message: 'User (' + req.params.userName + ') and Thought(s) successfully deleted' })
       )
       .catch((err) => {
         console.log(err);
