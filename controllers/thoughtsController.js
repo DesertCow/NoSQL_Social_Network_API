@@ -30,6 +30,24 @@ module.exports = {
       .then((thoughts) => res.status(200).json({ message: 'Thought ' + req.params.thoughtId + ' Deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  //* Update Thoughts
+  updateThought(req, res) {
+    console.log("Update Thoughts (" + req.params.thoughtId + ")");
+
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $set: req.body },
+      { runValidators: true, new: true },
+    )
+      .then((thoughts) =>
+        !thoughts
+          ? res
+            .status(404)
+            .json({ message: 'No Thoughts [' + req.params.thoughtId + '] found with that ID' })
+          : res.json(thoughts)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   //* Post reaction
   postReaction(req, res) {
     console.log("POST REACTION! " + req.params.thoughtId);
