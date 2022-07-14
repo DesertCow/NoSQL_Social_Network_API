@@ -43,7 +43,7 @@ const thoughtSchema = new Schema({
   userId: {
     type: String,
   },
-  reactions: reactionSchema,
+  reactions: [reactionSchema],
 },
   {
     toJSON: {
@@ -54,12 +54,8 @@ const thoughtSchema = new Schema({
 );
 
 thoughtSchema.virtual('reactionCount').get(function () {
-  //TODO: Fix ME! TEMP WORKAROUND
-  //* How to count the number of "reactions" stored under reactions
-  //return this.reactions.length();
-  return Math.floor(Math.random() * 150);
+  return this.reactions.length
 });
-
 
 // Initialize Thought Model
 const Thought = model('thought', thoughtSchema);
