@@ -1,4 +1,4 @@
-const { Thought, User } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
   // Get all users
@@ -18,10 +18,34 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // create a new student
+  //* Create a new User
   createUser(req, res) {
     User.create(req.body)
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
+  },
+  //* Delete User and Remove thoughts
+  deleteUser(req, res) {
+    User.findOneAndRemove({ _id: req.params.userId })
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No such User exists' })
+          : Thought.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $pull: { _id: req.params.userId } },
+            { new: true }
+          )
+      )
+      .then((course) =>
+        !course
+          ? res.status(404).json({
+            message: 'User deleted, but no Thoughts found!',
+          })
+          : res.json({ message: 'User and Thoughts successfully deleted' })
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 };

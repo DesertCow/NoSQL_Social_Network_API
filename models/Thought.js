@@ -52,11 +52,13 @@ const thoughtSchema = new Schema({
 );
 
 thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reactions.length;
+  //TODO: Fix ME!
+  // return this.reactions.length();
+  return 22;
 });
 
 
 // Initialize Thought Model
-const Thought = model('Thought', thoughtSchema);
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
