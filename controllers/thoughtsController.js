@@ -32,8 +32,6 @@ module.exports = {
   },
   //* Update Thoughts
   updateThought(req, res) {
-    console.log("Update Thoughts (" + req.params.thoughtId + ")");
-
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
@@ -56,29 +54,29 @@ module.exports = {
       { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
-      .then((thoughts) =>
-        !thoughts
+      .then((reactions) =>
+        !reactions
           ? res
             .status(404)
-            .json({ message: 'Thought [' + req.params.thoughtId + '] was not found!' })
-          : res.json(thoughts)
+            .json({ message: 'Reaction [' + req.params.thoughtId + '] was not found!' })
+          : res.json(reactions)
       )
       .catch((err) => res.status(500).json(err));
   },
   //* Delete reaction
   deleteReaction(req, res) {
-    console.log("DELETE REACTION! " + req.params.thoughtId);
+    console.log("DELETE REACTION! " + req.params.thoughtId + " || " + req.params.reactionID);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: req.body } },
+      { $pull: { reactions: { reactionId: req.params.reactionID } } },
       { runValidators: true, new: true }
     )
-      .then((thoughts) =>
-        !thoughts
+      .then((reactions) =>
+        !reactions
           ? res
             .status(404)
-            .json({ message: 'Thought [' + req.params.thoughtId + '] was not found!' })
-          : res.json(thoughts)
+            .json({ message: 'Reaction [' + req.params.thoughtId + '] was not found!' })
+          : res.json(reactions)
       )
       .catch((err) => res.status(500).json(err));
   },
