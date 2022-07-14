@@ -24,6 +24,24 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
+  //* Update a new User
+  updateUser(req, res) {
+    console.log("Update User (" + req.params.userId + ")");
+
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $set: req.body },
+      { runValidators: true, new: true },
+    )
+      .then((user) =>
+        !user
+          ? res
+            .status(404)
+            .json({ message: 'No User [' + req.params.userId + '] found with that ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   //* Delete User and Remove thoughts
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
@@ -45,5 +63,43 @@ module.exports = {
         console.log(err);
         res.status(500).json(err);
       });
+  },
+  //* Add Friend
+  addFriend(req, res) {
+    console.log("Will you be my friend?");
+    console.log("[" + req.params.userId + "] Adding [" + req.params.friendsId + "]");
+
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendsId } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res
+            .status(404)
+            .json({ message: 'No User [' + req.params.userId + '] found with that ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  //* Delete Friend
+  deleteFriend(req, res) {
+    console.log("Goodbye friend...");
+    console.log("[" + req.params.userId + "] Removing [" + req.params.friendsId + "]");
+
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendsId } },
+      { new: true }
+    )
+      .then((user) =>
+        !user
+          ? res
+            .status(404)
+            .json({ message: 'No User [' + req.params.userId + '] found with that ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
   },
 };

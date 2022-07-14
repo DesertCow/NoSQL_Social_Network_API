@@ -30,5 +30,39 @@ module.exports = {
       .then((thoughts) => res.status(200).json({ message: 'Thought ' + req.params.thoughtId + ' Deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  //* Post reaction
+  postReaction(req, res) {
+    console.log("POST REACTION! " + req.params.thoughtId);
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((thoughts) =>
+        !thoughts
+          ? res
+            .status(404)
+            .json({ message: 'Thought [' + req.params.thoughtId + '] was not found!' })
+          : res.json(thoughts)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  //* Delete reaction
+  deleteReaction(req, res) {
+    console.log("DELETE REACTION! " + req.params.thoughtId);
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((thoughts) =>
+        !thoughts
+          ? res
+            .status(404)
+            .json({ message: 'Thought [' + req.params.thoughtId + '] was not found!' })
+          : res.json(thoughts)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 
 };

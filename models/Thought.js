@@ -4,8 +4,8 @@ const { Schema, model } = require('mongoose');
 const reactionSchema = new Schema(
   {
     reactionId: {
-      type: String,
-      required: true
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
     },
     reactionBody: {
       type: String,
@@ -43,7 +43,7 @@ const thoughtSchema = new Schema({
   userId: {
     type: String,
   },
-  reactions: reactionSchema,
+  reactions: [reactionSchema],
 },
   {
     toJSON: {
@@ -54,17 +54,8 @@ const thoughtSchema = new Schema({
 );
 
 thoughtSchema.virtual('reactionCount').get(function () {
-  //TODO: Fix ME! TEMP WORKAROUND
-  // return this.reactions.length();
-  return Math.floor(Math.random() * 150);
+  return this.reactions.length
 });
-
-// thoughtSchema.virtual('userId').get(function () {
-
-//   return this.userId;
-//   // return "NULL";
-// });
-
 
 // Initialize Thought Model
 const Thought = model('thought', thoughtSchema);
