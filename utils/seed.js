@@ -14,6 +14,7 @@ connection.once('open', async () => {
 
   for (let i = 0; i < 20; i++) {
 
+    // Uses FakerJS to gnerate valid seed Data
     let tempUserName = faker.internet.userName()
 
     users.push({
@@ -30,9 +31,6 @@ connection.once('open', async () => {
       })
     }
   }
-
-  // console.table(users);
-  // console.log(users)
 
   await User.collection.insertMany(users);
   await Thought.collection.insertMany(thoughts);

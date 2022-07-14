@@ -30,6 +30,22 @@ module.exports = {
       .then((thoughts) => res.status(200).json({ message: 'Thought ' + req.params.thoughtId + ' Deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  //* Update Thoughts
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $set: req.body },
+      { runValidators: true, new: true },
+    )
+      .then((thoughts) =>
+        !thoughts
+          ? res
+            .status(404)
+            .json({ message: 'No Thoughts [' + req.params.thoughtId + '] found with that ID' })
+          : res.json(thoughts)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   //* Post reaction
   postReaction(req, res) {
     console.log("POST REACTION! " + req.params.thoughtId);
@@ -38,31 +54,30 @@ module.exports = {
       { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
-      .then((thoughts) =>
-        !thoughts
+      .then((reactions) =>
+        !reactions
           ? res
             .status(404)
-            .json({ message: 'Thought [' + req.params.thoughtId + '] was not found!' })
-          : res.json(thoughts)
+            .json({ message: 'Reaction [' + req.params.thoughtId + '] was not found!' })
+          : res.json(reactions)
       )
       .catch((err) => res.status(500).json(err));
   },
   //* Delete reaction
   deleteReaction(req, res) {
-    console.log("DELETE REACTION! " + req.params.thoughtId);
+    console.log("DELETE REACTION! " + req.params.thoughtId + " || " + req.params.reactionID);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: req.body } },
+      { $pull: { reactions: { reactionId: req.params.reactionID } } },
       { runValidators: true, new: true }
     )
-      .then((thoughts) =>
-        !thoughts
+      .then((reactions) =>
+        !reactions
           ? res
             .status(404)
-            .json({ message: 'Thought [' + req.params.thoughtId + '] was not found!' })
-          : res.json(thoughts)
+            .json({ message: 'Reaction [' + req.params.thoughtId + '] was not found!' })
+          : res.json(reactions)
       )
       .catch((err) => res.status(500).json(err));
   },
-
 };

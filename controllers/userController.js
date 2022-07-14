@@ -1,13 +1,13 @@
 const { User, Thought } = require('../models');
 
 module.exports = {
-  // Get all users
+  //* GET: all users
   getUsers(req, res) {
     User.find()
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  // Get a single user
+  //* GET: a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -18,16 +18,14 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //* Create a new User
+  //* POST: Create a new User
   createUser(req, res) {
     User.create(req.body)
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  //* Update a new User
+  //* PUT: Update an existing User
   updateUser(req, res) {
-    console.log("Update User (" + req.params.userId + ")");
-
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $set: req.body },
@@ -42,7 +40,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //* Delete User and Remove thoughts
+  //* DELETE: User and remove all thoughts
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
@@ -64,11 +62,8 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  //* Add Friend
+  //* POST: Add Friend
   addFriend(req, res) {
-    console.log("Will you be my friend?");
-    console.log("[" + req.params.userId + "] Adding [" + req.params.friendsId + "]");
-
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendsId } },
@@ -83,11 +78,8 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //* Delete Friend
+  //* DELETE: Remove Friend
   deleteFriend(req, res) {
-    console.log("Goodbye friend...");
-    console.log("[" + req.params.userId + "] Removing [" + req.params.friendsId + "]");
-
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $pull: { friends: req.params.friendsId } },
