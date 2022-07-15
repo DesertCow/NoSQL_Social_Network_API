@@ -152,9 +152,9 @@ npm start
 <br>
 
 <br>
-<h5 align="center">BONUS DEMO of removing User and Thoughts</h5>
+<h5 align="center">BONUS DEMO: Removing User and Thoughts</h5>
 <p align="center">
-<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/178d4c5f-58fc-4b3b-adb2-13207099c2bc" frameborder="0"></iframe>
+<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/d4057c9c-064c-47e1-a9f6-c4b0cc576985" frameborder="0"></iframe>
 </p>
 <br>
 <br>
