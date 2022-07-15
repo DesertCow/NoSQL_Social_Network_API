@@ -64,7 +64,6 @@ module.exports = {
   },
   //* DELETE: Remove reaction
   deleteReaction(req, res) {
-    console.log("DELETE REACTION! " + req.params.thoughtId + " || " + req.params.reactionID);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: { reactionId: req.params.reactionID } } },
