@@ -119,15 +119,42 @@ npm start
 
   ----
 
- <p align="center">
-  <img src="./public/img/demo1.gif" width="550" alt="Demo 1")
+
+<h5 align="center">Install/Seed/Start Demo</h5>
+<p align="center">
+<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/a2c9213f-5f07-4eff-9a66-1f2a82371bcd" frameborder="0"></iframe>
 </p>
-<h5 align="center">Demo of API</h5>
+<br>
+
+<br>
+<h5 align="center">GET (all/single) with Users/Thoughts Demo</h5>
+<p align="center">
+<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/178d4c5f-58fc-4b3b-adb2-13207099c2bc" frameborder="0"></iframe>
+</p>
 <br>
 <br>
 
+<br>
+<h5 align="center">POST/PUT/DELETE for Users and Thoughts</h5>
 <p align="center">
-<a href="www.youtube.com">Video Link</a>
+<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/e2cd3550-01fe-4773-87b4-fdcac41de023" frameborder="0"></iframe>
+</p>
+<br>
+<br>
+
+
+<br>
+<h5 align="center">POST/DELETE from Friends List / Reactions</h5>
+<p align="center">
+<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/c4cfbfe4-f6d8-4754-8ab2-ee03f48adeb0" frameborder="0"></iframe>
+</p>
+<br>
+<br>
+
+<br>
+<h5 align="center">BONUS DEMO of removing User and Thoughts</h5>
+<p align="center">
+<iframe width="560px" height="320px" allowfullscreen="true" allow="autoplay *" src="https://bootcampspot.instructuremedia.com/embed/178d4c5f-58fc-4b3b-adb2-13207099c2bc" frameborder="0"></iframe>
 </p>
 <br>
 <br>
